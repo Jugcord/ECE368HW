@@ -18,6 +18,14 @@ int main(int argc, char ** argv)
     //argv[1] should be "-a"
     //./pa1 -l input.b output.b should run the list functions
     //argv[1] should be "-l"
+    if(argv[1] == "-a")
+    {
+        char* filename = argv[2];
+        long* array;
+        int size;
+        array = Array_Load_From_File(filename, &size); //read input file into array, update size
+
+    }
 
 
     return EXIT_SUCCESS;

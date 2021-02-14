@@ -6,7 +6,7 @@
 #include "shell_list.h"
 #include "list_of_list.h"
 
-int main(int argc, char ** argv)
+int main(int argc, char * argv[])
 {
     // argv[2]: name of input file (binary)
     // argv[3]: name of output file (binary)
@@ -18,21 +18,24 @@ int main(int argc, char ** argv)
     //argv[1] should be "-a"
     //./pa1 -l input.b output.b should run the list functions
     //argv[1] should be "-l"
-    if(argv[1] == "-a")
+    if(strcmp(argv[1],"-a") == 0)
     {
         char* inputfile = argv[2];
         char* outputfile = argv[3];
         long* array;
         int size;
         int sizecheck;
-        int n_comp = 0;
+        long n_comp;
         array = Array_Load_From_File(inputfile, &size); //read input file into array, update size
         Array_Shellsort(array, size, &n_comp);
         sizecheck = Array_Save_To_File(outputfile, array, size);
         if (size != sizecheck)
         {
-            System.out.println("different input/output sizes!\n");
+            printf("different input/output sizes!\n");
+			printf("Total number of comparisons: %ld\n", n_comp);
         }
+		free(array);
+
 
     }
 

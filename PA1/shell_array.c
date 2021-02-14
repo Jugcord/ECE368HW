@@ -31,17 +31,16 @@ long *Array_Load_From_File(char *filename, int *size)
     *size = *size / sizeof(long); //find number of longs
     array = (long*)malloc(*size * sizeof(long)); //dynamically allocate array of longs
 
-    if(arr == NULL) //if malloc fails
+    if(array == NULL) //if malloc fails
     {
         fclose(fp);
         *size = 0;
         return NULL;
     }
 
-    for(int i = 0; i < *size; i++)
-    {
-        fscanf(fp, "%ld", &array[i]); //read file 1 long at a time into array
-    }
+  
+    fread(array, sizeof *array, *size, fp); //read file 1 long at a time into array
+    
 
     fclose(fp);
     return array;
@@ -54,7 +53,7 @@ int Array_Save_To_File(char *filename, long *array, int size)
      * return how many longs were saved in file
      */
     FILE* fp = fopen(filename, "wb");
-    if(*array == NULL || size == 0) //if array is NULL or size is 0
+    if(array == NULL || size == 0) //if array is NULL or size is 0
     {
         fclose(fp);
         return 0;

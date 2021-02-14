@@ -5,6 +5,8 @@ long *Array_Load_From_File(char *filename, int *size);
 
 int Array_Save_To_File(char *filename, long *array, int size);
 
+int helper_Generate_Seq(int seq_start, int size);
+
 void Array_Shellsort(long *array, int size, long *n_comp);
 
 #endif

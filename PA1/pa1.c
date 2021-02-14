@@ -20,10 +20,19 @@ int main(int argc, char ** argv)
     //argv[1] should be "-l"
     if(argv[1] == "-a")
     {
-        char* filename = argv[2];
+        char* inputfile = argv[2];
+        char* outputfile = argv[3];
         long* array;
         int size;
-        array = Array_Load_From_File(filename, &size); //read input file into array, update size
+        int sizecheck;
+        int n_comp = 0;
+        array = Array_Load_From_File(inputfile, &size); //read input file into array, update size
+        Array_Shellsort(array, size, &n_comp);
+        sizecheck = Array_Save_To_File(outputfile, array, size);
+        if (size != sizecheck)
+        {
+            System.out.println("different input/output sizes!\n");
+        }
 
     }
 
